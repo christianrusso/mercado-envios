@@ -35,6 +35,9 @@ _Instalar las dependencias del proyecto_
 npm install
 ```
 
+_Crear un archivo **.env** en la raiz del proyecto siguiendo la estructura de **.env.example** con los datos reales necesarios_
+
+
 
 ## Ejecutar la aplicacion ⚙️
 
@@ -56,33 +59,33 @@ _Endpoints con los que cuenta la api actualmente_
 
 **Primer** endpoint a usar. Mediante este se creara una **sincronizacion** con la base de datos de MP y la de nuestra api.
 ```
-{{api_url}}/sync/order/seller/502735229 Sincronizar las ordenes y envios de MP, parametro: seller id
+/sync/order/seller/502735229 Sincronizar las ordenes y envios de MP, parametro: seller id
 ```
 
 ```
-{{api_url}}/orders/ Get de todas las ordenes en nuestra base de datos
-{{api_url}}/orders/6074416b0ed0c2336c9867aa Get de una sola orden, parametro: order id
-{{api_url}}/orders/seller/6074416a0ed0c2336c9867a1 Get de todas las ordenes de un vendedor, parametro: seller id
+/orders/ Get de todas las ordenes en nuestra base de datos
+/orders/6074416b0ed0c2336c9867aa Get de una sola orden, parametro: order id
+/orders/seller/6074416a0ed0c2336c9867a1 Get de todas las ordenes de un vendedor, parametro: seller id
 ```
 
 ```
-{{api_url}}/shipping/ Get de todos los envios
-{{api_url}}/shipping/6074416a0ed0c2336c9867a8 Get de un envio, parametro: shipping id
-{{api_url}}/shipping/mercadolibre/40437477250, Get de un envio, parametro: shipping id de mercadopago
-{{api_url}}/shipping/seller/6074416a0ed0c2336c9867a1 Get de todos los envios de un vendedor, parametro: seller id
+/shipping/ Get de todos los envios
+/shipping/6074416a0ed0c2336c9867a8 Get de un envio, parametro: shipping id
+/shipping/mercadolibre/40437477250, Get de un envio, parametro: shipping id de mercadopago
+/shipping/seller/6074416a0ed0c2336c9867a1 Get de todos los envios de un vendedor, parametro: seller id
 ```
 
 ```
-{{api_url}}/payments/ Get de todos los pagos
-{{api_url}}/payments/6074416a0ed0c2336c9867a2 Get de un pago, parametro: payment id
+/payments/ Get de todos los pagos
+/payments/6074416a0ed0c2336c9867a2 Get de un pago, parametro: payment id
 ```
 
 ```
-{{api_url}}/sellers/ Get de todos los vendedores
-{{api_url}}/sellers/6074416a0ed0c2336c9867a1 Get de un vendedor, parametro: seller id
+/sellers/ Get de todos los vendedores
+/sellers/6074416a0ed0c2336c9867a1 Get de un vendedor, parametro: seller id
 ```
 
 ```
-{{api_url}}/buyers/ Get de todos los compradores
-{{api_url}}/buyers/6074416a0ed0c2336c9867a0 Get de un comprador, parametro: buyer id
+/buyers/ Get de todos los compradores
+/buyers/6074416a0ed0c2336c9867a0 Get de un comprador, parametro: buyer id
 ```

@@ -88,3 +88,7 @@ _Endpoints con los que cuenta la api actualmente_
 /buyers/ Get de todos los compradores
 /buyers/6074416a0ed0c2336c9867a0 Get de un comprador, parametro: buyer id
 ```
+
+## Postman Doc 📖
+
+Puedes encontrar los endpoints mas detallados en [Postman](https://documenter.getpostman.com/view/9170091/TzJpiKo5)

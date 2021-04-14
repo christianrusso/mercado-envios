@@ -23,19 +23,19 @@ Mongodb
 
 _Pasos necesarios para la instalacion y correcto funcionamiento de la api_
 
-_Clonar el proyecto_
+_1) Clonar el proyecto_
 
 ```
 git clone https://github.com/christianrusso/mercado-envios
 ```
 
-_Instalar las dependencias del proyecto_
+_2) Instalar las dependencias del proyecto_
 
 ```
 npm install
 ```
 
-_Crear un archivo **.env** en la raiz del proyecto siguiendo la estructura de **.env.example** con los datos reales necesarios_
+_3) Crear un archivo **.env** en la raiz del proyecto siguiendo la estructura de **.env.example** con los datos reales necesarios_
 
 
 

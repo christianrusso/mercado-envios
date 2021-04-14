@@ -45,7 +45,6 @@ _Comando para ejecutar en produccion_
 
 ```
 npm start
-
 ```
 _Comando para ejecutar en desarrollo_
 

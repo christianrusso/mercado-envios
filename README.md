@@ -58,7 +58,7 @@ _Endpoints con los que cuenta la api actualmente_
 
 **Primer** endpoint a usar. Mediante este se creara una **sincronizacion** con la base de datos de MP y la de nuestra api.
 ```
-/sync/order/seller/502735229 Sincronizar las ordenes y envios de MP, parametro: seller id
+/sync/order/seller/502735229 Sincronizar las ordenes y envios de MP, parametro: seller id de mercadopago
 ```
 
 ```

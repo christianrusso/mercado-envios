@@ -14,10 +14,8 @@ const MercadoPagoService = require('./mercadopagoService');
 exports.syncOrders = async (sellerId) => {
   try {
     const orders = await MercadoPagoService.MPgetOrdersBySeller(sellerId);
-    console.log('TOTAL DE ORDENES DEL SELLER: ', orders.length);
     for await (const order of orders) {
       const orderExist = await Order.findOne({ id: order.id });
-      console.log('Recorriendo: ', order.id);
       if (!orderExist) {
         await handleNewOrder(order);
       } else if (orderExist.date_last_updated != order.date_last_updated) {
@@ -61,7 +59,6 @@ const handleNewOrder = async (order) => {
     }
     let newShippment;
     if (shipping.id) {
-      console.log('Has shipping');
       const shippment = await MercadoPagoService.MPgetShippingDetail(shipping.id);
       newShippment = await handleNewShippment(shippment);
     }

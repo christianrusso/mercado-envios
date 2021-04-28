@@ -12,6 +12,6 @@ app.use(express.json());
 app.use(cors());
 app.use('/api/', routes());
 
-task.executeTask();
+// task.executeTask();
 
 app.listen(globalConfig.port);

@@ -12,6 +12,6 @@ app.use(express.json());
 app.use(cors());
 app.use('/api/', routes());
 
-// task.executeTask();
+task.executeTask();
 
-app.listen(globalConfig.port);
+app.listen(globalConfig.port, () => console.log("Server is up on port: ", globalConfig.port));

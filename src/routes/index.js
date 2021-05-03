@@ -7,6 +7,7 @@ const syncController = require('../controllers/syncController');
 const sellerController = require('../controllers/sellerController');
 const buyerController = require('../controllers/buyerController');
 const paymentController = require('../controllers/paymentController');
+const providerController = require('../controllers/providerController');
 
 module.exports = () => {
   router.get('/orders/', orderController.getOrders);
@@ -27,7 +28,11 @@ module.exports = () => {
   router.get('/buyers/', buyerController.getBuyers);
   router.get('/buyers/:buyer', buyerController.getOneBuyer);
 
-  router.get('/sync/order/seller/:seller', syncController.getOrders);
+  router.get('/providers/', providerController.getProviders);
+  router.post('/providers/', providerController.createProvider);
+  router.delete('/providers/:provider', providerController.deleteProvider);
+
+  router.get('/sync/order/', syncController.getOrders);
 
   return router;
 };

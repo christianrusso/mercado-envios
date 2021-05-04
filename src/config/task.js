@@ -7,7 +7,5 @@ const periodicity = {
 };
 
 exports.getPeriodicity = () => {
-  const perHour = process.env.TASK_PER_HOUR || false;
-  if (perHour) return periodicity.onePerHour;
   return periodicity.onePerDay;
 };

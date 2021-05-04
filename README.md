@@ -56,37 +56,48 @@ npm run dev
 
 _Endpoints con los que cuenta la api actualmente_
 
-**Primer** endpoint a usar. Mediante este se creara una **sincronizacion** con la base de datos de MP y la de nuestra api.
+Los providers son los vendedores desde los cuales se quiere obtener la informacion. 
+Es necesario que tengan un token, el id no es necesario, ya que si no cuenta con uno, al sincronizar lo guardara.
+Se debe tener al menos un provider para poder sincronizar con mercadopago
+
 ```
-/sync/order/seller/502735229 Sincronizar las ordenes y envios de MP, parametro: seller id de mercadopago
+GET /providers/ Get de todos los providers
+POST /providers/ Crear un Provider  -body: name, token, sellerId  (sellerId opcional)
+DELETE /providers/6074416a0ed0c2336c9867a1 Eliminar un provider, parametro: provider id
+```
+
+
+Mediante este se creara una **sincronizacion** con la base de datos de MP y la de nuestra api.
+```
+GET /sync/order/ Sincronizar las ordenes y envios de MP
 ```
 
 ```
-/orders/ Get de todas las ordenes en nuestra base de datos
-/orders/6074416b0ed0c2336c9867aa Get de una sola orden, parametro: order id
-/orders/seller/6074416a0ed0c2336c9867a1 Get de todas las ordenes de un vendedor, parametro: seller id
+GET /orders/ Get de todas las ordenes en nuestra base de datos
+GET /orders/6074416b0ed0c2336c9867aa Get de una sola orden, parametro: order id
+GET /orders/seller/6074416a0ed0c2336c9867a1 Get de todas las ordenes de un vendedor, parametro: seller id
 ```
 
 ```
-/shipping/ Get de todos los envios
-/shipping/6074416a0ed0c2336c9867a8 Get de un envio, parametro: shipping id
-/shipping/mercadolibre/40437477250, Get de un envio, parametro: shipping id de mercadopago
-/shipping/seller/6074416a0ed0c2336c9867a1 Get de todos los envios de un vendedor, parametro: seller id
+GET /shipping/ Get de todos los envios
+GET /shipping/6074416a0ed0c2336c9867a8 Get de un envio, parametro: shipping id
+GET /shipping/mercadolibre/40437477250, Get de un envio, parametro: shipping id de mercadopago
+GET /shipping/seller/6074416a0ed0c2336c9867a1 Get de todos los envios de un vendedor, parametro: seller id
 ```
 
 ```
-/payments/ Get de todos los pagos
-/payments/6074416a0ed0c2336c9867a2 Get de un pago, parametro: payment id
+GET /payments/ Get de todos los pagos
+GET /payments/6074416a0ed0c2336c9867a2 Get de un pago, parametro: payment id
 ```
 
 ```
-/sellers/ Get de todos los vendedores
-/sellers/6074416a0ed0c2336c9867a1 Get de un vendedor, parametro: seller id
+GET /sellers/ Get de todos los vendedores
+GET /sellers/6074416a0ed0c2336c9867a1 Get de un vendedor, parametro: seller id
 ```
 
 ```
-/buyers/ Get de todos los compradores
-/buyers/6074416a0ed0c2336c9867a0 Get de un comprador, parametro: buyer id
+GET /buyers/ Get de todos los compradores
+GET /buyers/6074416a0ed0c2336c9867a0 Get de un comprador, parametro: buyer id
 ```
 
 ## Postman Doc 📖

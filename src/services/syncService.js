@@ -8,32 +8,48 @@ const SenderAddress = require('../models/SenderAddress');
 const ReceiverAddress = require('../models/ReceiverAddress');
 const ShippingOption = require('../models/ShippingOption');
 const ItemShipping = require('../models/ItemShipping');
+const Provider = require('../models/Provider');
 
 const MercadoPagoService = require('./mercadopagoService');
 
-exports.syncOrders = async (sellerId) => {
+exports.syncOrders = async () => {
   try {
-    const orders = await MercadoPagoService.MPgetOrdersBySeller(sellerId);
-    console.log('TOTAL DE ORDENES DEL SELLER: ', orders.length);
-    for await (const order of orders) {
-      const orderExist = await Order.findOne({ id: order.id });
-      console.log('Recorriendo: ', order.id);
-      if (!orderExist) {
-        await handleNewOrder(order);
-      } else if (orderExist.date_last_updated != order.date_last_updated) {
-        await orderExist.delete();
-        await handleNewOrder(order);
+    const providers = await Provider.find();
+    if (providers.length < 1) throw new Error('You dont have providers');
+    for await (let provider of providers) {
+      if (!provider.token) throw new Error('You must have a token');
+      let orders;
+      if (!provider.sellerId) {
+        const me = await MercadoPagoService.MPgetMe(provider);
+        const prov = await Provider.findOneAndUpdate(
+          { _id: provider._id },
+          { sellerId: me.id },
+          { useFindAndModify: false }
+        );
+        orders = await MercadoPagoService.MPgetOrdersBySeller(prov);
       } else {
-        continue;
+        orders = await MercadoPagoService.MPgetOrdersBySeller(provider);
+      }
+      for await (const order of orders) {
+        const orderExist = await Order.findOne({ id: order.id });
+        if (!orderExist) {
+          await handleNewOrder(order, provider);
+        } else if (orderExist.date_last_updated != order.date_last_updated) {
+          await orderExist.delete();
+          await handleNewOrder(order, provider);
+        } else {
+          continue;
+        }
       }
     }
+
     return true;
   } catch (error) {
     throw new Error(error.message);
   }
 };
 
-const handleNewOrder = async (order) => {
+const handleNewOrder = async (order, provider) => {
   try {
     console.log('NEW ORDER WITH ID: ', order.id);
     const { buyer, seller, payments, order_items, shipping } = order;
@@ -61,8 +77,7 @@ const handleNewOrder = async (order) => {
     }
     let newShippment;
     if (shipping.id) {
-      console.log('Has shipping');
-      const shippment = await MercadoPagoService.MPgetShippingDetail(shipping.id);
+      const shippment = await MercadoPagoService.MPgetShippingDetail(shipping.id, provider);
       newShippment = await handleNewShippment(shippment);
     }
     order.buyer = buyerExist || buyerData;
